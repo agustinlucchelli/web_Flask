@@ -1,0 +1,43 @@
+{% include "head.html" %}
+
+<main>
+
+    <div class = "container">
+        <form method = "POST">
+
+            {{ form.csrf_token }}
+
+            <div>
+
+                {{ form.username.label }}  {{ form.username() }}
+                {% for error in form.username.errors %}
+                    <span class = "error"> {{ error }} </span>
+                {% endfor %}
+            
+            </div>
+
+            <div>
+
+                {{ form.password.label }}  {{ form.password() }}
+                {% for error in form.password.errors %}
+                    <span class = "error"> {{ error }} </span>
+                {% endfor %}
+
+            </div>
+
+            <div>
+
+                {{ form.email.label }}  {{ form.email() }}
+                {% for error in form.email.errors %}
+                    <span class = "error"> {{ error }} </span>
+                {% endfor %}
+
+            </div>
+
+            {{ form.submit() }}
+        </div>
+
+
+</main>
+
+{% include "foot.html" %}
