@@ -10,7 +10,7 @@ import datetime, secrets, sqlite3, bcrypt
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///C:/Users/User/Desktop/Python/PAGINA WEB/usuarios.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///directorio/usuarios.db'
 app.config["SALALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
