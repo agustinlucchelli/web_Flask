@@ -2,40 +2,68 @@
 
 <main>
 
-    <div class = "container">
-        <form method = "POST">
+    <div class = "container" id = "container-form">
+        
+        <div class="row align-items-center ">
 
-            {{ form.csrf_token }}
-
-            <div>
-
-                {{ form.username.label }}  {{ form.username() }}
-                {% for error in form.username.errors %}
-                    <span class = "error"> {{ error }} </span>
-                {% endfor %}
-            
+            <div class="col-4">
             </div>
+            <div class="col-4" id = "columnas">
+    
+                <form method = "POST">
 
-            <div>
+                    <h1>SING UP</h1>
 
-                {{ form.password.label }}  {{ form.password() }}
-                {% for error in form.password.errors %}
-                    <span class = "error"> {{ error }} </span>
-                {% endfor %}
+                    {{ form.csrf_token }}
+        
+                    <div class = "username_">
+        
+                        {{ form.username.label }}  {{ form.username() }}
+                        {% for error in form.username.errors %}
+                            <span class = "error"> {{ error }} </span>
+                        {% endfor %}
+                    
+                    </div>
+        
+                    <div class = "password_register">
+        
+                        {{ form.password.label }}  {{ form.password() }}
+                        {% for error in form.password.errors %}
+                            <span class = "error"> {{ error }} </span>
+                        {% endfor %}
+        
+                    </div>
+        
+                    <div class = "email_">
+        
+                        {{ form.email.label }}  {{ form.email() }}
+                        {% for error in form.email.errors %}
+                            <span class = "error"> {{ error }} </span>
+                        {% endfor %}
+        
+                    </div>
+        
+                    <div class="row align-items-center ">
+
+                        <div class="col-2">
+                       </div>
+                       <div class="col-8" id = "boton-form">
+
+                           {{ form.submit() }}
+
+                       </div>
+                       <div class="col-2">
+                       </div>
+
+                   </div>  
 
             </div>
-
-            <div>
-
-                {{ form.email.label }}  {{ form.email() }}
-                {% for error in form.email.errors %}
-                    <span class = "error"> {{ error }} </span>
-                {% endfor %}
-
+            <div class="col-4">
             </div>
-
-            {{ form.submit() }}
+    
         </div>
+
+    </div>
 
 
 </main>

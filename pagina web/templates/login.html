@@ -2,31 +2,58 @@
 
 <main>
 
-    <div class = "container">
-        <form method = "POST">
+    <div class = "container" id = "container-form">
 
-            {{ form.csrf_token }}
+        <div class="row align-items-center">
 
-            <div>
-
-                {{ form.username.label }}  {{ form.username() }}
-                {% for error in form.username.errors %}
-                    <span class = "error"> {{ error }} </span>
-                {% endfor %}
-            
+            <div class="col-4">
             </div>
+            <div class="col-4" id = "columnas">
+    
+                <form method = "POST">
 
-            <div>
+                    <h1>LOG IN</h1>
+    
+                    {{ form.csrf_token }}
+        
+                    <div class = "username_">
+        
+                        {{ form.username.label }}  {{ form.username() }}
+                        {% for error in form.username.errors %}
+                            <span class = "error"> {{ error }} </span>
+                        {% endfor %}
+                    
+                    </div>
+        
+                    <div class = "password_">
+        
+                        {{ form.password.label }}  {{ form.password() }}
+                        {% for error in form.password.errors %}
+                            <span class = "error"> {{ error }} </span>
+                        {% endfor %}
+        
+                    </div>
+                    <div class="row align-items-center ">
 
-                {{ form.password.label }}  {{ form.password() }}
-                {% for error in form.password.errors %}
-                    <span class = "error"> {{ error }} </span>
-                {% endfor %}
+                         <div class="col-2">
+                        </div>
+                        <div class="col-8" id = "boton-form">
 
+                            {{ form.submit() }}
+
+                        </div>
+                        <div class="col-2">
+                        </div>
+
+                    </div>    
+                    
             </div>
-
-            {{ form.submit() }}
+            <div class="col-4">
+            </div>
+    
         </div>
+
+    </div>
 
 </main>
 

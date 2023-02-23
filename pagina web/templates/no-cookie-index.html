@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+
+{{rechazada}}
+
+{% if rechazada %}
+   
+<div id="cookie-consent-container">
+  Esta página web utiliza cookies propias y de terceros para fines funcionales (permitir lanavegación web), 
+  para optimizar la navegación y personalizarla según tus preferencias,
+  así como para mostrarte publicidad en base a tu perfil de navegación (p.e páginas visitadas).
+
+  Si pulsas ACEPTAR, aceptas todas las cookies.
+  <div class = "internal_div_button">
+    <button id="cookie-consent">I Consent</button>
+    <button id="cookie-no-consent">I Don't Consent</button>
+  </div>
+</div>
+
+{% endif %}
+
+<script>
+
+  var fn = function () {
+    document.cookie = "aceptar_cookies=true";
+    window.location.reload();
+  };
+
+  var esconder = function () {
+    
+    document.cookie = "aceptar_cookies=false";
+
+    var valor = false;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/modificar");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ valor: valor }));
+
+    window.location.reload();
+  };
+
+  document.getElementById('cookie-consent').onclick = fn;
+  document.getElementById('cookie-no-consent').onclick = esconder;
+</script>
+
+  <title>Pagina | Prueba</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <link href="static/style.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <ul class="nav nav-tabs">
+
+      <li class="nav-item">
+        <a href="/" class="nav-link" aria-current="page">  Home <i class="fa fa-home" aria-hidden="true"></i></a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">News</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/sobre_nosotros">About us</a>
+          
+        </div>
+      </li>
+      
+    </ul>
+
+</head>
+
+<body>
+
+
+<main>
+
+  <div class = "container" id = "primary">
+
+      <div class="row align-items-center ">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          
+          <div class="card mb-3" style="max-width: 900px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+              <img src="Image Source" class="img-fluid rounded-start" alt="Card title">
+              </div>
+              <div class="col-md-7">
+                <div class="card-body">
+                  <h5 class="card-title">Tarjeta de Prueba</h5>
+                  <p class="card-text">Aqui iria toda la informacion a publicar. </p>
+                  <p class="card-text"><small class="text-muted">Fecha de Publicacion</small></p>
+                </div>
+              </div>
+            </div>
+            </div> 
+
+        </div>
+        <div class="col-2">
+          
+        </div>
+      </div>
+
+  </div>
+</main>
+
+{% include "foot.html" %}

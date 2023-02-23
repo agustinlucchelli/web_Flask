@@ -1,4 +1,4 @@
-from flask import Flask, render_template, make_response, request, session, redirect, url_for, g
+from flask import Flask, jsonify, render_template, make_response, request, session, redirect, url_for, g
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
@@ -10,17 +10,29 @@ import datetime, secrets, sqlite3, bcrypt
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///directorio/usuarios.db'
-app.config["SALALCHEMY_TRACK_MODIFICATIONS"] = False
 
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///C:/Users/User/Desktop/Python/PAGINA WEB/usuarios.db'
+app.config["SALALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-
+    
 @app.before_request
 def before_request():
+    
     g.user = current_user.is_authenticated
+    
+@app.context_processor
+def inject_template_scope():
+    injections = dict()
+
+    def cookies_check():
+        value = request.cookies.get('cookie_consent')
+        return value == 'true'
+    injections.update(cookies_check=cookies_check)
+
+    return injections
 
 # nos permite restringir rutas si no esta logeado, decorando la funcion de la ruta especifica a denegar el acceso.
 def login_required(fun):
@@ -79,15 +91,47 @@ with app.app_context():
     
     db.create_all()
 
-
 @app.route("/")
-def index():
+def index():    
     
-    response = make_response(render_template("index.html", condicion = str(g.user)))
+    aceptar_cookies = request.cookies.get('aceptar_cookies')
     
-    response.set_cookie("nombre_de_la_cookie_", f"{request.remote_addr} - {datetime.datetime.now()}", max_age = 10000)
+    if aceptar_cookies == 'true':
+        response = make_response(render_template('index.html', condicion=str(g.user)))
+        response.set_cookie("aceptar_cookies", value="true", max_age=10000)
+        response.set_cookie("nombre_de_la_cookie_", f"{request.remote_addr} - {datetime.datetime.now()}", max_age=10000)
+        return response 
+    else:
+        
+        try:
+            
+            # Si la cookie no existe, establece el valor por defecto como "false"
+            response = make_response(render_template('no-cookie-index.html', rechazada = session["norechazada"]))
+            response.set_cookie("aceptar_cookies", value="false", max_age=10000)
+            return response
+        
+        except KeyError:
+            
+            session["norechazada"] = ""
+            # Si la cookie no existe, establece el valor por defecto como "false"
+            response = make_response(render_template('no-cookie-index.html', rechazada = True))
+            response.set_cookie("aceptar_cookies", value="false", max_age=10000)
+            return response
     
+
+@app.route("/modificar", methods = ["POST"])
+def modificar():
+    
+    data = request.get_json()
+    valor = data['valor']
+
+    session["norechazada"] = valor
+    
+    response = make_response(render_template("no-cookie-index.html", rechazada = session["norechazada"]))
+    response.set_cookie("aceptar_cookies", value="false", max_age=10000)
     return response
+    
+
 
 @app.route("/sobre_nosotros")
 def leer():
@@ -126,14 +170,21 @@ def registro():
     
 @app.route("/LogOut")
 def salir():
+    
     logout_user()
-    return redirect(url_for("index"))
+    
+    cookies = request.cookies
+    
+    response = make_response(redirect(url_for('index')))
+    
+    list(map(lambda cookie : response.delete_cookie(cookie), cookies))
+
+    return response
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     
     form = LOGIN_FORM()
-    print(form.validate_on_submit())
     
     if form.validate_on_submit() and request.method == "POST":
         
@@ -146,7 +197,6 @@ def login():
             
             try:
                 password_ = bcrypt.checkpw(password.encode("utf-8"), i.password)
-                print(password_)
             except:
                 return redirect(url_for("login"))
             
