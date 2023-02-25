@@ -97,26 +97,37 @@ def index():
     aceptar_cookies = request.cookies.get('aceptar_cookies')
     
     if aceptar_cookies == 'true':
+        
         response = make_response(render_template('index.html', condicion=str(g.user)))
         response.set_cookie("aceptar_cookies", value="true", max_age=10000)
         response.set_cookie("nombre_de_la_cookie_", f"{request.remote_addr} - {datetime.datetime.now()}", max_age=10000)
         return response 
+    
     else:
         
         try:
             
             # Si la cookie no existe, establece el valor por defecto como "false"
+            #despues de que se denege el uso de cookies y se recargue el index, no se produce la exepcion y...
+            #el valor de norechazada se pasa con el valor de false para ocultar el banner de consentimiento.
             response = make_response(render_template('no-cookie-index.html', rechazada = session["norechazada"]))
             response.set_cookie("aceptar_cookies", value="false", max_age=10000)
             return response
         
         except KeyError:
             
+            #como al abrir la pagina web, no se declaro la clave "norechazada" del diccionario session, se produce un KeyError intencional.
+            #este KeyError nos permite inicializar la clave norechazada en un valor predeterminado, evitando que cuando se recargue la pagina...
+            #éste vuelva a setearse en el valor predeterminado, y que el valor que obtenga sea el derivdo de la web.
             session["norechazada"] = ""
             # Si la cookie no existe, establece el valor por defecto como "false"
             response = make_response(render_template('no-cookie-index.html', rechazada = True))
             response.set_cookie("aceptar_cookies", value="false", max_age=10000)
             return response
+        
+        except Exception as e:
+            
+            print(e)
     
 
 @app.route("/modificar", methods = ["POST"])

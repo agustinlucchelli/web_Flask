@@ -1,0 +1,243 @@
+body{
+
+    background-image: url("/static/img/imagenfondo.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+}
+
+.username_{
+
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+}
+
+.password_{
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.username_ input[type="text"]::placeholder {
+    padding-left: 30px; /* Para hacer espacio para el icono */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23ccc' d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+
+}
+
+.password_ input[type = "password"]::placeholder,
+.password_ input[type = "text"]::placeholder{
+    padding-left: 30px; /* Para hacer espacio para el icono */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23ccc' d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+
+}
+  
+.password_register{
+
+    padding-bottom: 5%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.password_register input[type="password"]::placeholder,
+.password_register input[type="text"]::placeholder  {
+    padding-left: 30px; /* Para hacer espacio para el icono */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23ccc' d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+
+} 
+
+.password-container {
+    display: flex;
+    position: relative;
+    width: 85%;
+}
+
+.password-input {
+    flex: 1;
+    padding-right: 40px; /* añade espacio a la derecha del input para el botón */
+}
+
+.toggle-password {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    padding: 5%;
+    top: 8px;
+    bottom: 0;
+    right: 4px;
+    background-image: url("/static/img/ocultar.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #f2f2f2; /* establece el fondo del elemento que muestra la imagen en gris claro */
+    mix-blend-mode: multiply; /* mezcla la imagen con el fondo del elemento para eliminar el fondo blanco */
+
+}
+
+.toggle-password-show {
+    background-image: url("/static/img/ocultar.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.toggle-password-hide {
+    margin-top: 3px;
+    background-image: url("/static/img/mostrar.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.email_ input[type="text"]::placeholder {
+    padding-left: 30px; /* Para hacer espacio para el icono */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 512'%3E%3Cpath fill='%23ccc' d='M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0l57.4-43c23.9-59.8 79.7-103.3 146.3-109.8l13.9-10.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176V384c0 35.3 28.7 64 64 64H360.2C335.1 417.6 320 378.5 320 336c0-5.6 .3-11.1 .8-16.6l-26.4 19.8zM640 336a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 353.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left center;
+
+}
+
+
+.internal_div_button{
+
+    text-align: center;
+
+}
+
+#navegation_bar{
+
+    background-color: rgba(0, 255, 255, 0.075);
+
+}
+
+#primary{
+
+    padding-top: 4%;
+
+}
+
+#container-form{
+
+    padding-top: 2%;
+    
+}
+
+#boton-form{
+
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 10%;
+
+}
+
+#submit{
+
+    width: 80%;
+    height: 100%;
+    border-radius: 15%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: aqua;
+
+}
+
+#submit:hover {
+
+    background-color: rgb(13, 63, 82);
+
+}
+
+#columnas{
+
+    padding: 5%;
+    background-color: rgba(49, 22, 22, 0.411);
+    color: aqua;
+    box-sizing: border-box;
+    border-radius: 5%;
+    text-align: center;
+
+}
+
+#columnas label{
+
+    display: none;
+
+}
+
+#columnas h1{
+
+    margin-bottom: 10%;
+
+}
+
+#cookie-consent-container{
+
+    position: absolute;
+    top: 45%; left: 25%;
+    background-color: bisque;
+    border-radius: 5%;
+    padding: 5%;
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+    padding-bottom: 3.5%;
+    width: 50%;
+
+}
+
+#cookie-consent{
+
+    border-radius: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 10%;
+    width: 25%;
+    text-align:center
+
+}
+
+#cookie-no-consent{
+
+    border-radius: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 10%;
+    width: 25%;
+    text-align:center
+    
+}
+
+#username{
+
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    border-radius: 5%;
+    width: 85%;
+
+}
+
+#password{
+
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    border-radius: 5%;
+    width: 85%;
+
+}
+
+#email{
+
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    border-radius: 5%;
+    width: 85%;
+
+}

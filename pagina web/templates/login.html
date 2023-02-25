@@ -15,10 +15,9 @@
                     <h1>LOG IN</h1>
     
                     {{ form.csrf_token }}
-        
                     <div class = "username_">
-        
-                        {{ form.username.label }}  {{ form.username() }}
+                        
+                        {{ form.username.label }}  {{ form.username(placeholder = "username") }}
                         {% for error in form.username.errors %}
                             <span class = "error"> {{ error }} </span>
                         {% endfor %}
@@ -27,7 +26,13 @@
         
                     <div class = "password_">
         
-                        {{ form.password.label }}  {{ form.password() }}
+                        {{ form.password.label }} 
+
+                        <div class = 'password-container'>
+                            {{ form.password(placeholder = "password", class = "password-input") }}
+                            <button img src="img/mostrar.png" alt="Mostrar" type = "button" class="toggle-password" onclick="togglePassword()"></button>
+                        </div>
+                        
                         {% for error in form.password.errors %}
                             <span class = "error"> {{ error }} </span>
                         {% endfor %}
@@ -54,6 +59,25 @@
         </div>
 
     </div>
+
+    <script>
+        function togglePassword() {
+            var passwordInput = document.querySelector('.password-input');
+            var toggleButton = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+              passwordInput.type = 'text';
+              toggleButton.classList.remove('toggle-password-show');
+              toggleButton.classList.add('toggle-password-hide');
+              toggleButton.alt = 'Ocultar';
+            } else {
+              passwordInput.type = 'password';
+              toggleButton.classList.remove('toggle-password-hide');
+              toggleButton.classList.add('toggle-password-show');
+              toggleButton.alt = 'Mostrar';
+            }
+          }
+          
+    </script>
 
 </main>
 
