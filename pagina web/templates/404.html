@@ -1,0 +1,42 @@
+{% include "head.html" %}
+
+    <main>
+
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          <strong>Ups!</strong> Page not found.
+        </div>
+        
+        <script>
+          var alertList = document.querySelectorAll('.alert');
+          alertList.forEach(function (alert) {
+            new bootstrap.Alert(alert)
+          })
+        </script>
+
+            <div class="container" id = "container-return">
+
+                <div class="row align-items-center ">
+
+                    <div class="col-4">
+                    </div>
+
+                    <div class="col-4" id = "return-mid">
+
+                    <h1 class = "text-error-404" >we cant found this page, click the button for home page.</h1>
+
+                        <button type="button" name="" id="" class="btn btn-primary" onclick="window.location.href = '/'">Button</button>
+
+                    </div>
+
+                    <div class="col-4">
+                    </div>
+
+                </div>
+            </div>
+
+        
+
+    </main>
+
+{% include "foot.html" %}

@@ -7,6 +7,14 @@ body{
 
 }
 
+.text-error-404{
+
+    color: rgb(255, 10, 1);
+    margin-bottom: 10%;
+    font-size: larger;
+
+}
+
 .username_{
 
     padding-top: 5%;
@@ -14,10 +22,36 @@ body{
 
 }
 
+.password_container_forgot{
+
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+}
+
+.password_container_forgot a{
+
+    text-decoration: none;
+    color: aqua;
+
+}
+
+.password_container_forgot a:hover{
+
+    text-decoration: underline;
+    color: rgb(17, 82, 107);
+
+}
+
 .password_{
 
     display: flex;
-    justify-content: center;
+    text-align: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 
 }
 
@@ -26,6 +60,7 @@ body{
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%23ccc' d='M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: left center;
+    width: 100%;
 
 }
 
@@ -67,6 +102,8 @@ body{
 }
 
 .toggle-password {
+
+    margin-top: 5px;
     position: absolute;
     width: 20px;
     height: 20px;
@@ -76,7 +113,7 @@ body{
     top: 8px;
     bottom: 0;
     right: 4px;
-    background-image: url("/static/img/ocultar.png");
+    background-image: url("/static/img/mostrar.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-color: #f2f2f2; /* establece el fondo del elemento que muestra la imagen en gris claro */
@@ -85,14 +122,17 @@ body{
 }
 
 .toggle-password-show {
-    background-image: url("/static/img/ocultar.png");
+
+    margin-top: 5px;
+    background-image: url("/static/img/mostrar.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .toggle-password-hide {
-    margin-top: 3px;
-    background-image: url("/static/img/mostrar.png");
+
+    margin-top: 2px;    
+    background-image: url("/static/img/ocultar.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -105,10 +145,29 @@ body{
 
 }
 
+.flashes{
+
+    padding-left: 0px;
+    margin-bottom: 0px;
+
+}
+
 
 .internal_div_button{
 
     text-align: center;
+
+}
+
+#return-mid{
+
+    text-align: center;
+
+}
+
+#container-return{
+
+    margin-top: 15%;
 
 }
 
@@ -157,6 +216,7 @@ body{
 
 #columnas{
 
+    margin-top: 3%;
     padding: 5%;
     background-color: rgba(49, 22, 22, 0.411);
     color: aqua;

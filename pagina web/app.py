@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, make_response, request, session, redirect, url_for, g
+from flask import Flask, jsonify, render_template, make_response, request, session, redirect, url_for, flash, g
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
@@ -107,6 +107,9 @@ def index():
         
         try:
             
+            if session["norechazada"] == "":
+                raise KeyError
+            
             # Si la cookie no existe, establece el valor por defecto como "false"
             #despues de que se denege el uso de cookies y se recargue el index, no se produce la exepcion y...
             #el valor de norechazada se pasa con el valor de false para ocultar el banner de consentimiento.
@@ -133,14 +136,21 @@ def index():
 @app.route("/modificar", methods = ["POST"])
 def modificar():
     
-    data = request.get_json()
-    valor = data['valor']
+    if session["norechazada"] != "":
+        data = request.get_json()
+        valor = data['valor']
 
-    session["norechazada"] = valor
-    
-    response = make_response(render_template("no-cookie-index.html", rechazada = session["norechazada"]))
-    response.set_cookie("aceptar_cookies", value="false", max_age=10000)
-    return response
+        session["norechazada"] = valor
+        
+        response = make_response(render_template("no-cookie-index.html", rechazada = session["norechazada"]))
+        response.set_cookie("aceptar_cookies", value="false", max_age=10000)
+
+        return response
+
+    else:
+        
+        return render_template("no-cookie-index.html", rechazada = session["norechazada"])
+        
     
 
 
@@ -156,7 +166,7 @@ def leer():
 def news():
     return render_template("daily_mails.html")
 
-@app.route("/SingUp", methods = ["GET", "POST"])
+@app.route("/SingIn", methods = ["GET", "POST"])
 def registro():
     
     form = REGISTER_FORM()
@@ -210,14 +220,24 @@ def login():
                 password_ = bcrypt.checkpw(password.encode("utf-8"), i.password)
             except:
                 return redirect(url_for("login"))
-            
+
             if i is not None and password_:
                 
                 login_user(i)
                 session['user_id'] = 1
                 return redirect(url_for("index"))
-                
+            
+        else:
+            
+            flash("datos de usuario incorrectos.", "error")
+            return redirect(url_for("login"))
+       
     return render_template("login.html", form = form)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    # Renderizar una plantilla personalizada de error 404
+    return render_template('404.html'), 404
 
 if __name__ == "__main__":
     
